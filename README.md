@@ -14,7 +14,7 @@ This will launch 3 containers, one for each service. By default, the MongoDB ser
 
 
 ```
-habdemo $ docker-compose -f docker-compose-done.yml
+habdemo $ docker-compose -f docker-compose-done.yml up
 ```
 
 To fix the misconfigured MongoDB service, launch the `habitat/utility` container image - a container image to interact with the [Habitat supervisors](https://www.habitat.sh/docs/concepts-supervisor/) - in a second terminal.
@@ -33,13 +33,13 @@ This launches the utility container on the appropriate network and drops you int
 
 In your first terminal you should see the MongoDB service reconfigure itself, then the National Parks service successfully start. You should be able to interact with the application via the URL [http://127.0.0.1:8080/national-parks](http://127.0.0.1:8080/national-parks).
 
-You can also reconfigure HAProxy to enable the status page which is useful to show scaling of the application service. 
+You can also reconfigure HAProxy to enable the status page which is useful to show scaling of the application service.
 
 ```
 [root@cf651c234c50 habdemo]# ./apply_haproxy_config.sh 172.18.0.4
 ```
 
-The HAProxy status page can be accessed via the URL [http://127.0.0.1:9000/haproxy-status](http://127.0.0.1:9000/haproxy-status) (u:admin p:password). 
+The HAProxy status page can be accessed via the URL [http://127.0.0.1:9000/haproxy-status](http://127.0.0.1:9000/haproxy-status) (u:admin p:password).
 
 You can scale the application tier by using `docker-compose`.
 
@@ -61,8 +61,3 @@ The [Supervisor API](https://www.habitat.sh/docs/run-packages-monitoring/) for H
 * [http://127.0.0.1:9631/services/haproxy/default/config](http://127.0.0.1:9631/services/haproxy/default/config)
 * [http://127.0.0.1:9631/butterfly](http://127.0.0.1:9631/butterfly)
 * [http://127.0.0.1:9631/census](http://127.0.0.1:9631/census)
-
-
-
-
-
