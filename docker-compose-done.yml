@@ -19,6 +19,6 @@
       links:
         - national-parks:np
       environment:
-        HAB_HAPROXY: "bind = '*:8080'"
+        HAB_HAPROXY: "bind = '*:8080'\nstatus_page = true"
       command: --peer np --bind backend:national-parks.default
     
