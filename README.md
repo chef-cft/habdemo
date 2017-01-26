@@ -39,7 +39,7 @@ You can also reconfigure HAProxy to enable the status page which is useful to sh
 [root@cf651c234c50 habdemo]# ./apply_haproxy_config.sh 172.18.0.4
 ```
 
-The HAProxy status page can be accessed via the URL [http://127.0.0.1:9000/haproxy-status](http://127.0.0.1:9000/haproxy-status) (u:admin p:password). 
+The HAProxy status page can be accessed via the URL [http://127.0.0.1:9000/haproxy-status](http://127.0.0.1:9000/haproxy-stats) (u:admin p:password). 
 
 You can scale the application tier by using `docker-compose`.
 
