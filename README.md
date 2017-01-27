@@ -10,11 +10,11 @@ To start the demo, clone this repo, `cd` into the resulting directory, and run t
 habdemo $ docker-compose up
 ```
 
-This will launch 3 containers, one for each service. By default, the MongoDB service launches as misconfigured. To launch a functional appstack, use the `docker-compose-done.yml` file instead of the default `docker-compose.yml`.
+This will launch 3 containers, one for each service. By default, the MongoDB service launches as misconfigured (you'll see the `national-parks` service failing the `init` hook & constantly restarting because it can't connect to MongoDB). To launch a functional appstack, use the `docker-compose-done.yml` file instead of the default `docker-compose.yml`.
 
 
 ```
-habdemo $ docker-compose -f docker-compose-done.yml
+habdemo $ docker-compose -f docker-compose-done.yml up
 ```
 
 To fix the misconfigured MongoDB service, launch the `habitat/utility` container image - a container image to interact with the [Habitat supervisors](https://www.habitat.sh/docs/concepts-supervisor/) - in a second terminal.
@@ -39,7 +39,7 @@ You can also reconfigure HAProxy to enable the status page which is useful to sh
 [root@cf651c234c50 habdemo]# ./apply_haproxy_config.sh 172.18.0.4
 ```
 
-The HAProxy status page can be accessed via the URL [http://127.0.0.1:9000/haproxy-status](http://127.0.0.1:9000/haproxy-status) (u:admin p:password). 
+The HAProxy status page can be accessed via the URL [http://127.0.0.1:9000/haproxy-stats](http://127.0.0.1:9000/haproxy-stats) (u:admin p:password). 
 
 You can scale the application tier by using `docker-compose`.
 
