@@ -10,7 +10,7 @@ To start the demo, clone this repo, `cd` into the resulting directory, and run t
 habdemo $ docker-compose up
 ```
 
-This will launch 3 containers, one for each service. By default, the MongoDB service launches as misconfigured. To launch a functional appstack, use the `docker-compose-done.yml` file instead of the default `docker-compose.yml`.
+This will launch 3 containers, one for each service. By default, the MongoDB service launches as misconfigured (you'll see the `national-parks` service failing the `init` hook & constantly restarting because it can't connect to MongoDB). To launch a functional appstack, use the `docker-compose-done.yml` file instead of the default `docker-compose.yml`.
 
 
 ```
