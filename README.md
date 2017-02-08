@@ -61,3 +61,10 @@ The [Supervisor API](https://www.habitat.sh/docs/run-packages-monitoring/) for H
 * [http://127.0.0.1:9631/services/haproxy/default/config](http://127.0.0.1:9631/services/haproxy/default/config)
 * [http://127.0.0.1:9631/butterfly](http://127.0.0.1:9631/butterfly)
 * [http://127.0.0.1:9631/census](http://127.0.0.1:9631/census)
+
+# Running without Docker Compose
+
+This requires a Linux environment with Habitat installed:
+
+* `sudo hab start nathenharvey/mongodb`
+* `sudo hab start nathenharvey/national-parks --peer 127.0.0.1 --bind database:mongodb.default --listen-gossip 0.0.0.0:9639 --listen-http 0.0.0.0:9632`
