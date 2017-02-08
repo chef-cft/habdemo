@@ -17,14 +17,14 @@ This will launch 3 containers, one for each service. By default, the MongoDB ser
 habdemo $ docker-compose -f docker-compose-done.yml up
 ```
 
-To fix the misconfigured MongoDB service, launch the `habitat/utility` container image - a container image to interact with the [Habitat supervisors](https://www.habitat.sh/docs/concepts-supervisor/) - in a second terminal.
+Alternatively, you can fix the misconfigured MongoDB service, launch the `habitat/utility` container image - a container image to interact with the [Habitat supervisors](https://www.habitat.sh/docs/concepts-supervisor/) - in a second terminal.
 
 
 ```
 habdemo $ ./run_util.sh
 ```
 
-This launches the utility container on the appropriate network and drops you into a bash shell on that container. To reconfigure MongoDB, run the `apply_mongo_config.sh` script, passing the IP of the MongoDB container.
+This launches the utility container on the appropriate network and drops you into a bash shell on that container. To reconfigure MongoDB, run the `apply_mongo_config.sh` script, passing the IP of the MongoDB container, this will apply a new config template (`configs/mongo.toml`) into the running habitat supervisor (using `hap config apply`), this config template sets the `cluster_auth_mode=""`, which allows the app to connect to MongoDB.
 
 ```
 [root@cf651c234c50 /]# cd /habdemo
@@ -33,7 +33,7 @@ This launches the utility container on the appropriate network and drops you int
 
 In your first terminal you should see the MongoDB service reconfigure itself, then the National Parks service successfully start. You should be able to interact with the application via the URL [http://127.0.0.1:8080/national-parks](http://127.0.0.1:8080/national-parks).
 
-You can also reconfigure HAProxy to enable the status page which is useful to show scaling of the application service.
+You can also reconfigure HAProxy to enable the status page which is useful to show scaling of the application service, again this uses the `hap config apply` to apply a config template to a running supervisor.
 
 ```
 [root@cf651c234c50 habdemo]# ./apply_haproxy_config.sh 172.18.0.4
