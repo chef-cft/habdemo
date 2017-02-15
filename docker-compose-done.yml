@@ -24,4 +24,3 @@
       command: --peer national-parks --bind backend:national-parks.default
       labels:
         kompose.service.type: "NodePort"
-    

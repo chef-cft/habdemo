@@ -2,14 +2,15 @@
   services:
     mongo:
       image: habitat/mongodb:latest
-      hostname: "mongodb"
+      hostname: "mongo"
 #      environment:
 #        HAB_MONGODB: "[mongod.net]\nbind_ip = '0.0.0.0'\n[mongod.security]\ncluster_auth_mode = ''"
     national-parks:
       image: habitat/national-parks:latest
+      hostname: "national-parks"
       links:
         - mongo:mongodb
-      command: --peer mongodb --bind database:mongodb.default
+      command: --peer mongo --bind database:mongodb.default
     haproxy:
       image: habitat/haproxy:latest
       ports: 
@@ -20,5 +21,6 @@
         - national-parks:np
       environment:
         HAB_HAPROXY: "bind = '*:8080'"
-      command: --peer np --bind backend:national-parks.default
-    
+      command: --peer national-parks --bind backend:national-parks.default
+      labels:
+        kompose.service.type: "NodePort"
